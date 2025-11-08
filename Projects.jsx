@@ -30,35 +30,39 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "GameGrid",
-      description: "India's first esports performance analytics platform. Real-time data pipelines, player tracking, and AI-powered insights.",
-      tech: ["React", "Node.js", "PostgreSQL", "Redis", "AI/ML"],
-      status: "In Development",
-      link: "#",
+      title: "GameGrid.gg — Esports Analytics & Community Platform",
+      description: "Building an end-to-end Esports Analytics Platform for players, teams, and analysts under the project GameGrid.gg. Architected full-stack system using Next.js, Node.js, Firebase, and Tailwind CSS, featuring real-time stats, match insights, and player dashboards. Integrated GenAI modules for automated commentary and player performance analysis. Currently in closed beta with competitive BGMI teams.",
+      tech: ["Next.js", "Node.js", "Firebase", "Tailwind CSS", "GenAI", "Real-time Analytics"],
+      status: "In Progress",
+      link: "https://game-grid-one.vercel.app/",
+      github: "https://github.com/iabhijais",
       gradient: "from-purple-500 to-pink-500"
     },
     {
-      title: "AI Workflow System",
-      description: "Custom AI-assisted development workflow that accelerates coding by 10x. Integrates with VS Code and GitHub.",
-      tech: ["Python", "OpenAI API", "VS Code Extension", "TypeScript"],
-      status: "Active",
-      link: "#",
+      title: "ShellShock Counter — Interactive Strategy Game Tracker",
+      description: "A fun, interactive web app inspired by Buckshot Roulette, designed for strategic gameplay and shell tracking. Players can track Active and Blank shells, plan their moves visually, and enjoy a smooth, animated experience built with Next.js and TypeScript. The app features vibrant visuals, responsive design, and a dynamic counter system — making it a perfect mix of logic, fun, and frontend creativity!",
+      tech: ["Next.js", "React.js", "TypeScript", "Animations", "Glassmorphism"],
+      status: "Completed & Live",
+      link: "https://shell-counter.vercel.app/",
+      github: "https://github.com/iabhijais",
       gradient: "from-cyan-500 to-blue-500"
     },
     {
-      title: "Real-time Analytics Dashboard",
-      description: "High-performance dashboard for processing 10K+ events/second. Built for competitive gaming tournaments.",
-      tech: ["React", "WebSocket", "D3.js", "Express", "MongoDB"],
-      status: "Deployed",
+      title: "Driver Sleepiness Detection (AI-Based Safety System)",
+      description: "Developed a real-time driver drowsiness detection system using Convolutional Neural Networks (CNN) and facial feature recognition. Integrated OpenCV for live camera feed and TensorFlow for model training. The project detects eye-blink patterns to alert the driver and prevent road accidents. Published research in ICIRB 2023 Conference.",
+      tech: ["Python", "OpenCV", "TensorFlow", "CNN", "Facial Recognition"],
+      status: "Completed",
       link: "#",
+      github: "https://github.com/iabhijais",
       gradient: "from-green-500 to-teal-500"
     },
     {
-      title: "Esports Team Management",
-      description: "Complete roster management, scheduling, and performance tracking system for competitive teams.",
-      tech: ["Next.js", "Prisma", "PostgreSQL", "Vercel"],
-      status: "Live",
+      title: "Helperly — Android Emergency Assistance Application",
+      description: "Created an emergency Android app that sends secure SMS alerts to preset contacts when triggered by password. Built using Java, Firebase Authentication, and SQLite, the app runs silently in the background to enhance user safety. Accepted for oral presentation at 9th International Conference ICICSE 2021 and later published in IJSET Journal (Vol. 9, Issue 4, 2021).",
+      tech: ["Java", "Android Studio", "Firebase", "SQLite"],
+      status: "Completed",
       link: "#",
+      github: "https://github.com/iabhijais",
       gradient: "from-orange-500 to-red-500"
     }
   ];
@@ -132,24 +136,28 @@ export default function Projects() {
                     <div className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${isDark ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 border border-green-500/30' : 'bg-green-100 text-green-700 border border-green-300'}`}>
                       {project.status}
                     </div>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`w-10 h-10 rounded-lg ${isDark ? 'bg-white/5 hover:bg-white/10 border-white/10' : 'bg-gray-200 hover:bg-gray-300 border-gray-300'} border flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
-                      title="View Project"
-                    >
-                      <span className="text-xl">↗</span>
-                    </a>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`w-10 h-10 rounded-lg ${isDark ? 'bg-white/5 hover:bg-white/10 border-white/10' : 'bg-gray-200 hover:bg-gray-300 border-gray-300'} border flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
-                      title="GitHub Repository"
-                    >
-                      <span className="text-xl">🐙</span>
-                    </a>
+                    {project.link !== "#" && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-10 h-10 rounded-lg ${isDark ? 'bg-white/5 hover:bg-white/10 border-white/10' : 'bg-gray-200 hover:bg-gray-300 border-gray-300'} border flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
+                        title="View Live Project"
+                      >
+                        <span className="text-xl">↗</span>
+                      </a>
+                    )}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-10 h-10 rounded-lg ${isDark ? 'bg-white/5 hover:bg-white/10 border-white/10' : 'bg-gray-200 hover:bg-gray-300 border-gray-300'} border flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
+                        title="GitHub Repository"
+                      >
+                        <span className="text-xl">🐙</span>
+                      </a>
+                    )}
                   </div>
                 </div>
 
