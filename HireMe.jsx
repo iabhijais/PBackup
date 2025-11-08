@@ -101,7 +101,7 @@ export default function HireMe() {
           <p className={`text-xl mb-12 max-w-3xl mx-auto ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
             Whether you're hiring, collaborating, or just curious about my work —<br/>
             I'd love to connect.<br/>
-            Drop a message or reach out directly on LinkedIn or email<span className="animate-blink">.</span>
+            Drop a message or reach out directly on LinkedIn or email..<span className="animate-blink">.</span>
           </p>
 
           {/* Services */}
