@@ -99,7 +99,7 @@ export default function HireMe() {
             ⚡ Let's Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300">Together</span>
           </h1>
           <p className={`text-xl mb-12 max-w-3xl mx-auto ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
-            Whether you're hiring, collaborating, or just curious about my work — I'd love to connect.<br/>
+            I'd love to connect — whether you're hiring, collaborating, or just curious about my work.<br/>
             Drop a message or reach out directly on LinkedIn or email.
           </p>
 
