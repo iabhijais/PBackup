@@ -263,6 +263,28 @@ export default function App() {
             <h2 id="about-section" className="mt-8 mb-6 pb-2 text-[2.5rem] sm:text-[3.5rem] font-extrabold tracking-tight text-anim">
               I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 to-cyan-300 drop-shadow-[0_0_25px_rgba(168,85,247,0.5)] hover:drop-shadow-[0_0_35px_rgba(168,85,247,0.8)] transition-all duration-300">Abhishek</span>..<span className="animate-blink">.</span>
             </h2>
+
+            <div className={`mt-6 text-lg leading-relaxed space-y-4 ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
+              <p>
+                I'm an <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300">AI Enhanced Full-stack developer</span> and founder, currently building <a href="https://gamegrid.com" className="text-cyan-400 hover:text-cyan-300 transition-colors">GameGrid</a> — India's first <span className="font-semibold">esports performance analytics</span> platform. I design scalable systems, build real-time data pipelines, and ship products fast with AI-assisted workflows.
+              </p>
+              
+              <p>
+                My work blends <span className="font-semibold">AI</span>, <span className="font-semibold">UI/UX design</span>, and <span className="font-semibold">data engineering</span>. I'm constantly exploring how AI can <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">accelerate development cycles</a>, optimize user experiences, and turn ideas into production-grade products.
+              </p>
+              
+              <p>
+                I love <span className="font-semibold">building at speed</span>, experimenting with <span className="font-semibold">AI-driven workflows</span>, and solving <span className="font-semibold">high-pressure problems</span> in both tech and esports. Whether it's architecting scalable backends or refining <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">pixel-perfect interfaces</a>, I enjoy the challenge of creating systems that perform under pressure.
+              </p>
+              
+              <p>
+                Beyond development, I've <span className="font-semibold">led esports teams</span> in national tournaments, managed competitive rosters, and built communities around gaming and strategy. This combination of technical expertise and competitive leadership has shaped how I approach problem-solving and team collaboration.
+              </p>
+              
+              <p>
+                Here, I share my projects, systems, and insights from building startups, esports analytics, and AI-powered tools. If you're building something ambitious, <a href="mailto:iabhijais@gmail.com" className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300 hover:from-fuchsia-300 hover:to-cyan-200 transition-colors">let's connect</a>.
+              </p>
+            </div>
           </div>
         </div>
 
