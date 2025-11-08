@@ -54,7 +54,8 @@ export default function Projects() {
       status: "Completed",
       link: "#",
       github: "https://github.com/iabhijais",
-      paper: "https://drive.google.com/file/d/1R7N3RaKoGRy5jPjfAB13tN1XsCijiKox/view?usp=sharing",
+      credential: "https://confmanage.com/Author/ConferencePaper/PaperDetails/3832",
+      paper: "https://drive.google.com/file/d/1sn9BYWQRvwpvnr8UGm2zMkitVSfcsU6Q/view?usp=sharing",
       gradient: "from-green-500 to-teal-500"
     },
     {
