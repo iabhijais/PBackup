@@ -290,7 +290,7 @@ export default function App() {
 
         {/* Buttons aligned with nav */}
         <div className="hidden lg:flex flex-col gap-8 absolute top-[160px] right-6 w-[380px]">
-          <NeonButton title="Ideas → Reality" subtitle="View Projects →" glow="from-purple-500/70 to-pink-500/70" tilt={0.8} icon="💡" />
+          <NeonButton title="Ideas → Reality" subtitle="View Projects →" glow="from-purple-500/70 to-pink-500/70" tilt={0.8} icon="💡" href="/projects" />
           <NeonButton title="Beyond the Code" subtitle="Know Me →" glow="from-teal-500/70 to-cyan-500/70" tilt={-0.8} icon="👤" showLine={true} onClick={() => {
             const aboutSection = document.getElementById('about-section');
             if (aboutSection) {
@@ -300,7 +300,7 @@ export default function App() {
             }
           }} />
           <NeonButton title="Built to Prove" subtitle="View Resume →" glow="from-indigo-500/70 to-violet-500/70" tilt={0.8} icon="📄" href="/resume" />
-          <NeonButton title="Let's Build Together" subtitle="Hire Me →" glow="from-pink-500/70 to-red-500/70" tilt={-0.8} icon="🤝" showLine={true} />
+          <NeonButton title="Let's Build Together" subtitle="Hire Me →" glow="from-pink-500/70 to-red-500/70" tilt={-0.8} icon="🤝" showLine={true} href="/hire-me" />
         </div>
       </main>
 
