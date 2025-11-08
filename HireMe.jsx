@@ -93,12 +93,14 @@ export default function HireMe() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="text-center"
         >
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Let's Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300">Together</span>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            ⚡ Let's Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300">Together</span>
           </h1>
-          <p className={`text-xl mb-12 ${isDark ? 'text-white/70' : 'text-gray-600'}`}>
-            Turn your ambitious ideas into production-grade products. Fast, efficient, and AI-enhanced.
+          <p className={`text-xl mb-12 max-w-3xl mx-auto ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
+            Whether you're hiring, collaborating, or just curious about my work — I'd love to connect.<br/>
+            Drop a message or reach out directly on LinkedIn or email.
           </p>
 
           {/* Services */}
@@ -122,74 +124,79 @@ export default function HireMe() {
             ))}
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className={`rounded-2xl p-8 ${isDark ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-gray-200'} border backdrop-blur-xl`}
+            className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-            
-            <div className="space-y-6">
-              <div className="flex flex-col md:flex-row gap-6">
-                <a
-                  href="mailto:iabhijais@gmail.com"
-                  className={`flex-1 flex items-center gap-4 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-gray-50'} border ${isDark ? 'border-white/10' : 'border-gray-200'} transition-all duration-300`}
-                >
-                  <span className="text-3xl">✉️</span>
-                  <div>
-                    <div className="font-semibold">Email</div>
-                    <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>iabhijais@gmail.com</div>
-                  </div>
-                </a>
-                
-                <a
-                  href="https://www.linkedin.com/in/iabhijais/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex-1 flex items-center gap-4 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-gray-50'} border ${isDark ? 'border-white/10' : 'border-gray-200'} transition-all duration-300`}
-                >
-                  <span className="text-3xl">💼</span>
-                  <div>
-                    <div className="font-semibold">LinkedIn</div>
-                    <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>Connect with me</div>
-                  </div>
-                </a>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+              <a
+                href="mailto:iabhijais@gmail.com"
+                className={`group flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-fuchsia-400/30' : 'border-gray-200 hover:border-fuchsia-400/30'} transition-all duration-300`}
+              >
+                <span className="text-2xl">📧</span>
+                <div className="text-left">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all`}>Email</div>
+                  <div className="font-medium">iabhijais@gmail.com</div>
+                </div>
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/iabhijais/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-fuchsia-400/30' : 'border-gray-200 hover:border-fuchsia-400/30'} transition-all duration-300`}
+              >
+                <span className="text-2xl">�</span>
+                <div className="text-left">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all`}>LinkedIn</div>
+                  <div className="font-medium">linkedin.com/in/iabhijais</div>
+                </div>
+              </a>
+
+              <a
+                href="https://github.com/iabhijais"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-fuchsia-400/30' : 'border-gray-200 hover:border-fuchsia-400/30'} transition-all duration-300`}
+              >
+                <span className="text-2xl">🐙</span>
+                <div className="text-left">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all`}>GitHub</div>
+                  <div className="font-medium">github.com/iabhijais</div>
+                </div>
+              </a>
+
+              <a
+                href="https://iabhijais.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-fuchsia-400/30' : 'border-gray-200 hover:border-fuchsia-400/30'} transition-all duration-300`}
+              >
+                <span className="text-2xl">🌐</span>
+                <div className="text-left">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all`}>Portfolio</div>
+                  <div className="font-medium">iabhijais.vercel.app</div>
+                </div>
+              </a>
+
+              <div className={`flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5' : 'bg-gray-50'} border ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
+                <span className="text-2xl">📍</span>
+                <div className="text-left">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>Location</div>
+                  <div className="font-medium">India</div>
+                </div>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-6">
-                <a
-                  href="https://github.com/iabhijais"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex-1 flex items-center gap-4 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-gray-50'} border ${isDark ? 'border-white/10' : 'border-gray-200'} transition-all duration-300`}
-                >
-                  <span className="text-3xl">🐙</span>
-                  <div>
-                    <div className="font-semibold">GitHub</div>
-                    <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>View my code</div>
-                  </div>
-                </a>
-                
-                <a
-                  href="/resume"
-                  className={`flex-1 flex items-center gap-4 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-white hover:bg-gray-50'} border ${isDark ? 'border-white/10' : 'border-gray-200'} transition-all duration-300`}
-                >
-                  <span className="text-3xl">📄</span>
-                  <div>
-                    <div className="font-semibold">Resume</div>
-                    <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>View my experience</div>
-                  </div>
-                </a>
+              <div className={`flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5' : 'bg-gray-50'} border ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
+                <span className="text-2xl">�</span>
+                <div className="text-left">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>Timezone</div>
+                  <div className="font-medium">IST (UTC+5:30)</div>
+                </div>
               </div>
-            </div>
-
-            <div className={`mt-8 p-6 rounded-xl ${isDark ? 'bg-gradient-to-r from-fuchsia-500/10 to-cyan-500/10 border-fuchsia-500/20' : 'bg-gradient-to-r from-fuchsia-100 to-cyan-100 border-fuchsia-300'} border`}>
-              <h3 className="text-xl font-bold mb-2">💡 Quick Response Guaranteed</h3>
-              <p className={`${isDark ? 'text-white/70' : 'text-gray-700'}`}>
-                I typically respond within 24 hours. For urgent projects, mention "URGENT" in the subject line.
-              </p>
             </div>
           </motion.div>
         </motion.div>
