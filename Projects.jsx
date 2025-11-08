@@ -53,7 +53,6 @@ export default function Projects() {
       tech: ["Python", "OpenCV", "TensorFlow", "CNN", "Facial Recognition"],
       status: "Completed",
       link: "#",
-      github: "https://github.com/iabhijais",
       credential: "https://confmanage.com/Author/ConferencePaper/PaperDetails/3832",
       paper: "https://drive.google.com/file/d/1sn9BYWQRvwpvnr8UGm2zMkitVSfcsU6Q/view?usp=sharing",
       gradient: "from-green-500 to-teal-500"
@@ -64,7 +63,6 @@ export default function Projects() {
       tech: ["Java", "Android Studio", "Firebase", "SQLite"],
       status: "Completed",
       link: "#",
-      github: "https://github.com/iabhijais",
       credential: "https://www.ijset.in/volume-9-issue-4/",
       paper: "https://drive.google.com/file/d/1R7N3RaKoGRy5jPjfAB13tN1XsCijiKox/view?usp=sharing",
       gradient: "from-orange-500 to-red-500"
