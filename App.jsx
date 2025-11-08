@@ -149,6 +149,16 @@ export default function App() {
   const [isDark, setIsDark] = React.useState(true);
   const [scrollProgress, setScrollProgress] = React.useState(0);
 
+  const scrollToAbout = (e) => {
+    e.preventDefault();
+    const aboutSection = document.getElementById('about-section');
+    if (aboutSection) {
+      const yOffset = -20;
+      const y = aboutSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   const toggleTheme = () => {
     // Play pleasant click sound
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -220,7 +230,7 @@ export default function App() {
           <nav className="flex items-center gap-0 text-base font-semibold">
             <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/">Home</a>
             <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/projects">Projects</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/resume">Resume</a>
+            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="#" onClick={scrollToAbout}>About</a>
             <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/hire-me">Hire Me</a>
             <button 
               onClick={toggleTheme}
