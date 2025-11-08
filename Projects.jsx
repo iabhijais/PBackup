@@ -54,6 +54,7 @@ export default function Projects() {
       status: "Completed",
       link: "#",
       github: "https://github.com/iabhijais",
+      paper: "https://drive.google.com/file/d/1R7N3RaKoGRy5jPjfAB13tN1XsCijiKox/view?usp=sharing",
       gradient: "from-green-500 to-teal-500"
     },
     {
@@ -63,6 +64,8 @@ export default function Projects() {
       status: "Completed",
       link: "#",
       github: "https://github.com/iabhijais",
+      credential: "https://www.ijset.in/volume-9-issue-4/",
+      paper: "https://drive.google.com/file/d/1R7N3RaKoGRy5jPjfAB13tN1XsCijiKox/view?usp=sharing",
       gradient: "from-orange-500 to-red-500"
     },
     {
@@ -165,6 +168,28 @@ export default function Projects() {
                         title="GitHub Repository"
                       >
                         <span className="text-xl">🐙</span>
+                      </a>
+                    )}
+                    {project.credential && (
+                      <a
+                        href={project.credential}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-10 h-10 rounded-lg ${isDark ? 'bg-white/5 hover:bg-white/10 border-white/10' : 'bg-gray-200 hover:bg-gray-300 border-gray-300'} border flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
+                        title="View Credential"
+                      >
+                        <span className="text-xl">🏆</span>
+                      </a>
+                    )}
+                    {project.paper && (
+                      <a
+                        href={project.paper}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-10 h-10 rounded-lg ${isDark ? 'bg-white/5 hover:bg-white/10 border-white/10' : 'bg-gray-200 hover:bg-gray-300 border-gray-300'} border flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
+                        title="View Research Paper"
+                      >
+                        <span className="text-xl">📄</span>
                       </a>
                     )}
                   </div>
