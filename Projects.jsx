@@ -74,7 +74,7 @@ export default function Projects() {
       description: "All-in-One Calculator is a responsive and modular web application designed to perform multiple calculation types in a single interface. Built with React.js + TypeScript, styled with Tailwind CSS, and deployed via Vercel, it provides a seamless user experience with real-time calculation, multiple themes, and precision. Features include Normal Mode (standard arithmetic), Scientific Mode (advanced math functions like sin, cos, tan, log, factorials, roots), BMI Calculator (health insights based on metric or imperial input), Age Calculator (instant age computation from birth date), and Currency Converter (custom rate and preset conversion options).",
       tech: ["React.js", "TypeScript", "Tailwind CSS", "Vercel"],
       status: "Completed & Live",
-      link: "https://calcall.vercel.app/",
+      link: "https://calc-all.vercel.app/",
       github: "https://github.com/iabhijais",
       gradient: "from-indigo-500 to-purple-500"
     }
