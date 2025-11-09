@@ -91,8 +91,8 @@ export default function Gaming() {
       </header>
 
       <main className='max-w-5xl mx-auto px-6 py-12'>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className='mb-16 text-center'>
-          <h1 className='text-5xl md:text-6xl font-black mb-4 flex items-center justify-center gap-3'>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className='mb-16'>
+          <h1 className='text-5xl md:text-6xl font-black mb-4 flex items-center gap-3'>
             <span>🎮</span>
             <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400'>Gaming Journey</span>
           </h1>
@@ -101,7 +101,7 @@ export default function Gaming() {
           </p>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className={`space-y-6 text-lg leading-relaxed mb-16 text-center ${isDark ? 'text-white/85' : 'text-gray-700'}`}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className={`space-y-6 text-lg leading-relaxed mb-16 ${isDark ? 'text-white/85' : 'text-gray-700'}`}>
           <p>When most people were learning to press play, I was learning to strategize every frame. That's where <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold'>Hawk</span> was born — not just another gamer tag, but a mindset.</p>
           <p>I started my journey as a competitive <span className='font-bold'>BGMI player</span>, leading teams, managing scrims, and building strategies that turned underdogs into tournament-ready squads. From <span className='text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 font-bold'>Team Glacier</span> to <span className='text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 font-bold'>G4R Esports</span>, every lineup taught me something deeper — not just how to win a match, but how to lead, adapt, and analyze under fire.</p>
           <p>Soon, my curiosity evolved beyond the game itself. I wanted to understand why we won, why we lost, and how data could predict performance. That's when my love for gaming turned into something bigger — <span className='font-bold'>building tools for gamers</span>.</p>
@@ -110,7 +110,7 @@ export default function Gaming() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className='mb-16'>
-          <h2 className='text-3xl font-bold mb-8 flex items-center justify-center gap-3'>
+          <h2 className='text-3xl font-bold mb-8 flex items-center gap-3'>
             <span>⚡</span>
             <span className='text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300'>Where You'll Find Me</span>
           </h2>
@@ -148,7 +148,7 @@ export default function Gaming() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }} className='mb-16'>
-          <h2 className='text-3xl font-bold mb-8 flex items-center justify-center gap-3'>
+          <h2 className='text-3xl font-bold mb-8 flex items-center gap-3'>
             <span>🕹️</span>
             <span className='text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300'>Gaming Roles & Achievements</span>
           </h2>
@@ -171,7 +171,7 @@ export default function Gaming() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1.2 }} className='mb-16'>
-          <h2 className='text-3xl font-bold mb-8 flex items-center justify-center gap-3'>
+          <h2 className='text-3xl font-bold mb-8 flex items-center gap-3'>
             <span>🧠</span>
             <span className='text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300'>Current Focus</span>
           </h2>
