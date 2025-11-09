@@ -4,9 +4,13 @@
 
 /* Fix scrollbar and white space issues - Single scrollbar only */
 * {
+  box-sizing: border-box;
+}
+
+/* Reset margins and paddings for specific elements only */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {

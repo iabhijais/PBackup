@@ -54,7 +54,7 @@ export default function Gaming() {
         </div>
       </header>
 
-      <main className='max-w-5xl mx-auto px-8 md:px-12 lg:px-6 py-12'>
+      <main className='max-w-5xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12'>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className='mb-16'>
           <h1 className='text-5xl md:text-6xl font-black mb-4'>
             <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400'>🎮 Gaming Journey</span>
