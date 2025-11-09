@@ -1,5 +1,7 @@
 import React from "react";
+import Footer from './Footer.jsx';
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Projects() {
   const [isDark, setIsDark] = React.useState(true);
@@ -79,7 +81,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className={`min-h-screen ${isDark ? 'bg-black text-white' : 'bg-white text-gray-900'} transition-colors duration-300`}>
+    <div className={`min-h-screen h-full ${isDark ? 'bg-black text-white' : 'bg-white text-gray-900'} transition-colors duration-300`}>
       {/* NAV */}
       <header className={`w-full sticky top-0 z-20 ${isDark ? 'bg-black/50' : 'bg-white/80'} backdrop-blur-md transition-colors duration-300 ${!isDark && 'shadow-sm'}`}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -94,10 +96,10 @@ export default function Projects() {
             </span>
           </div>
           <nav className="flex items-center gap-0 text-base font-semibold">
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/">Home</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/projects">Projects</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/gaming">Gaming</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/hire-me">Hire Me</a>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/">Home</Link>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/projects">Projects</Link>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/gaming">Gaming</Link>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/hire-me">Hire Me</Link>
             <button 
               onClick={toggleTheme}
               className={`theme-toggle-btn w-10 h-10 rounded-full ${isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20' : 'bg-gray-200 border-gray-300 hover:bg-gray-300 hover:border-gray-400'} border text-xl transition-all duration-500 hover:scale-110 hover:rotate-180 overflow-hidden relative ml-6`}
@@ -166,7 +168,7 @@ export default function Projects() {
                         className={`w-10 h-10 rounded-lg ${isDark ? 'bg-white/5 hover:bg-white/10 border-white/10' : 'bg-gray-200 hover:bg-gray-300 border-gray-300'} border flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
                         title="GitHub Repository"
                       >
-                        <span className="text-xl">🐙</span>
+                        <img src="/github-icon.png" alt="GitHub" className="w-6 h-6 object-contain" />
                       </a>
                     )}
                     {project.credential && (
@@ -221,14 +223,7 @@ export default function Projects() {
         </motion.div>
       </main>
 
-      <footer className={`max-w-6xl mx-auto px-6 pb-10 pt-20 ${isDark ? 'text-white/50' : 'text-gray-500'} transition-colors duration-300`}>
-        <div className="text-center space-y-2">
-          <div>© 2025 Abhishek Jaisal — Founder & AI Enhanced Full-Stack Developer</div>
-          <div className="text-sm">
-            Let's connect → <a href="https://www.linkedin.com/in/iabhijais/" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors">LinkedIn</a> · <a href="https://github.com/iabhijais" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors">GitHub</a> · <a href="mailto:iabhijais@gmail.com" className="hover:text-fuchsia-400 transition-colors">Email</a>
-          </div>
-        </div>
-      </footer>
+      <Footer isDark={isDark} />
 
       <style>{`
         @keyframes blink {

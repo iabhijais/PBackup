@@ -1,0 +1,3 @@
+- [ ] recreate Gaming page component
+- [ ] wire route and nav updates if needed
+- [ ] run dev server to verify

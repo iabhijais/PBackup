@@ -1,5 +1,7 @@
 import React from "react";
+import Footer from './Footer.jsx';
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function HireMe() {
   const [isDark, setIsDark] = React.useState(true);
@@ -56,7 +58,7 @@ export default function HireMe() {
   ];
 
   return (
-    <div className={`min-h-screen ${isDark ? 'bg-black text-white' : 'bg-white text-gray-900'} transition-colors duration-300`}>
+    <div className={`min-h-screen h-full ${isDark ? 'bg-black text-white' : 'bg-white text-gray-900'} transition-colors duration-300`}>
       {/* NAV */}
       <header className={`w-full sticky top-0 z-20 ${isDark ? 'bg-black/50' : 'bg-white/80'} backdrop-blur-md transition-colors duration-300 ${!isDark && 'shadow-sm'}`}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -71,10 +73,10 @@ export default function HireMe() {
             </span>
           </div>
           <nav className="flex items-center gap-0 text-base font-semibold">
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/">Home</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/projects">Projects</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/gaming">Gaming</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/hire-me">Hire Me</a>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/">Home</Link>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/projects">Projects</Link>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/gaming">Gaming</Link>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/hire-me">Hire Me</Link>
             <button 
               onClick={toggleTheme}
               className={`theme-toggle-btn w-10 h-10 rounded-full ${isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20' : 'bg-gray-200 border-gray-300 hover:bg-gray-300 hover:border-gray-400'} border text-xl transition-all duration-500 hover:scale-110 hover:rotate-180 overflow-hidden relative ml-6`}
@@ -96,7 +98,7 @@ export default function HireMe() {
           className="text-center"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            ⚡ Let's Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300">Together</span>
+            🤝 Let's Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300">Together</span>
           </h1>
           <p className={`text-xl mb-12 max-w-3xl mx-auto ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
             Whether you're hiring, collaborating, or just curious about my work —<br/>
@@ -109,16 +111,24 @@ export default function HireMe() {
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`group relative rounded-2xl p-6 ${isDark ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-gray-200'} border backdrop-blur-xl hover:scale-[1.02] transition-all duration-300`}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                whileHover={{ scale: 1.06, y: -10, boxShadow: "0 30px 60px rgba(168, 85, 247, 0.5)" }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 500, 
+                  damping: 20,
+                  duration: 0.15,
+                  delay: index * 0.05
+                }}
+                className={`group relative rounded-2xl p-6 ${isDark ? 'bg-white/5 border-white/10 hover:bg-white/8' : 'bg-gray-50 border-gray-200 hover:bg-gray-100'} border backdrop-blur-xl cursor-pointer`}
               >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className={`text-2xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r ${service.gradient}`}>
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
+                <h3 className={`text-2xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r ${service.gradient} group-hover:scale-105 transition-transform duration-300`}>
                   {service.title}
                 </h3>
-                <p className={`${isDark ? 'text-white/70' : 'text-gray-600'}`}>
+                <p className={`${isDark ? 'text-white/70' : 'text-gray-600'} group-hover:text-white transition-colors duration-300`}>
                   {service.description}
                 </p>
               </motion.div>
@@ -129,88 +139,113 @@ export default function HireMe() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
             className="max-w-3xl mx-auto text-center"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-              <a
+              <motion.a
                 href="mailto:iabhijais@gmail.com"
-                className={`group flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-fuchsia-400/30' : 'border-gray-200 hover:border-fuchsia-400/30'} transition-all duration-300`}
+                whileHover={{ scale: 1.06, y: -6, boxShadow: "0 25px 50px rgba(168, 85, 247, 0.5)" }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 500, damping: 20, duration: 0.15 }}
+                className={`group flex items-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-fuchsia-400/50' : 'border-gray-200 hover:border-fuchsia-400/50'} transition-all duration-150 cursor-pointer`}
               >
-                <span className="text-2xl">📧</span>
-                <div className="text-left">
-                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all`}>Email</div>
-                  <div className="font-medium">iabhijais@gmail.com</div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-150">
+                  <span className="text-2xl">📧</span>
                 </div>
-              </a>
+                <div className="text-left flex-1">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all duration-150`}>Email</div>
+                  <div className="font-medium group-hover:scale-105 transition-transform duration-150">iabhijais@gmail.com</div>
+                </div>
+              </motion.a>
 
-              <a
+              <motion.a
                 href="https://www.linkedin.com/in/iabhijais/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-fuchsia-400/30' : 'border-gray-200 hover:border-fuchsia-400/30'} transition-all duration-300`}
+                whileHover={{ scale: 1.06, y: -6, boxShadow: "0 25px 50px rgba(59, 130, 246, 0.5)" }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 500, damping: 20, duration: 0.15 }}
+                className={`group flex items-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-cyan-400/50' : 'border-gray-200 hover:border-cyan-400/50'} transition-all duration-150 cursor-pointer`}
               >
-                <span className="text-2xl">�</span>
-                <div className="text-left">
-                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all`}>LinkedIn</div>
-                  <div className="font-medium">linkedin.com/in/iabhijais</div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-150">
+                  <img src="/linkedin-icon.png" alt="LinkedIn" className="w-8 h-8 object-contain" />
                 </div>
-              </a>
+                <div className="text-left flex-1">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all duration-150`}>LinkedIn</div>
+                  <div className="font-medium group-hover:scale-105 transition-transform duration-150">linkedin.com/in/iabhijais</div>
+                </div>
+              </motion.a>
 
-              <a
+              <motion.a
                 href="https://github.com/iabhijais"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-fuchsia-400/30' : 'border-gray-200 hover:border-fuchsia-400/30'} transition-all duration-300`}
+                whileHover={{ scale: 1.06, y: -6, boxShadow: "0 25px 50px rgba(107, 114, 128, 0.5)" }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 500, damping: 20, duration: 0.15 }}
+                className={`group flex items-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-gray-400/50' : 'border-gray-200 hover:border-gray-400/50'} transition-all duration-150 cursor-pointer`}
               >
-                <span className="text-2xl">🐙</span>
-                <div className="text-left">
-                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all`}>GitHub</div>
-                  <div className="font-medium">github.com/iabhijais</div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-500/20 to-slate-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-150">
+                  <img src="/github-icon.png" alt="GitHub" className="w-8 h-8 object-contain" />
                 </div>
-              </a>
+                <div className="text-left flex-1">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all duration-150`}>GitHub</div>
+                  <div className="font-medium group-hover:scale-105 transition-transform duration-150">github.com/iabhijais</div>
+                </div>
+              </motion.a>
 
-              <a
+              <motion.a
                 href="https://iabhijais.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-fuchsia-400/30' : 'border-gray-200 hover:border-fuchsia-400/30'} transition-all duration-300`}
+                whileHover={{ scale: 1.06, y: -6, boxShadow: "0 25px 50px rgba(139, 92, 246, 0.5)" }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 500, damping: 20, duration: 0.15 }}
+                className={`group flex items-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5 hover:bg-white/10' : 'bg-gray-50 hover:bg-gray-100'} border ${isDark ? 'border-white/10 hover:border-purple-400/50' : 'border-gray-200 hover:border-purple-400/50'} transition-all duration-150 cursor-pointer`}
               >
-                <span className="text-2xl">🌐</span>
-                <div className="text-left">
-                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all`}>Portfolio</div>
-                  <div className="font-medium">iabhijais.vercel.app</div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-150">
+                  <span className="text-2xl">🌐</span>
                 </div>
-              </a>
+                <div className="text-left flex-1">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all duration-150`}>Portfolio</div>
+                  <div className="font-medium group-hover:scale-105 transition-transform duration-150">iabhijais.vercel.app</div>
+                </div>
+              </motion.a>
 
-              <div className={`flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5' : 'bg-gray-50'} border ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
-                <span className="text-2xl">📍</span>
-                <div className="text-left">
-                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>Location</div>
-                  <div className="font-medium">India</div>
+              <motion.div 
+                whileHover={{ scale: 1.06, y: -6, boxShadow: "0 25px 50px rgba(34, 197, 94, 0.5)" }}
+                transition={{ type: "spring", stiffness: 500, damping: 20, duration: 0.15 }}
+                className={`group flex items-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5' : 'bg-gray-50'} border ${isDark ? 'border-white/10 hover:border-green-400/50' : 'border-gray-200 hover:border-green-400/50'} transition-all duration-150 cursor-default`}
+              >
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-150">
+                  <span className="text-2xl">📍</span>
                 </div>
-              </div>
+                <div className="text-left flex-1">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all duration-150`}>Location</div>
+                  <div className="font-medium group-hover:scale-105 transition-transform duration-150">Delhi NCR, India</div>
+                </div>
+              </motion.div>
 
-              <div className={`flex items-center justify-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5' : 'bg-gray-50'} border ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
-                <span className="text-2xl">�</span>
-                <div className="text-left">
-                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>Timezone</div>
-                  <div className="font-medium">IST (UTC+5:30)</div>
+              <motion.div 
+                whileHover={{ scale: 1.06, y: -6, boxShadow: "0 25px 50px rgba(249, 115, 22, 0.5)" }}
+                transition={{ type: "spring", stiffness: 500, damping: 20, duration: 0.15 }}
+                className={`group flex items-center gap-3 p-4 rounded-xl ${isDark ? 'bg-white/5' : 'bg-gray-50'} border ${isDark ? 'border-white/10 hover:border-orange-400/50' : 'border-gray-200 hover:border-orange-400/50'} transition-all duration-150 cursor-default`}
+              >
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-150">
+                  <span className="text-2xl">⏰</span>
                 </div>
-              </div>
+                <div className="text-left flex-1">
+                  <div className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-300 transition-all duration-150`}>Timezone</div>
+                  <div className="font-medium group-hover:scale-105 transition-transform duration-150">IST (UTC+5:30)</div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>
       </main>
 
-      <footer className={`max-w-6xl mx-auto px-6 pb-10 pt-20 ${isDark ? 'text-white/50' : 'text-gray-500'} transition-colors duration-300`}>
-        <div className="text-center space-y-2">
-          <div>© 2025 Abhishek Jaisal — Founder & AI Enhanced Full-Stack Developer</div>
-          <div className="text-sm">
-            Let's connect → <a href="https://www.linkedin.com/in/iabhijais/" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors">LinkedIn</a> · <a href="https://github.com/iabhijais" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors">GitHub</a> · <a href="mailto:iabhijais@gmail.com" className="hover:text-fuchsia-400 transition-colors">Email</a>
-          </div>
-        </div>
-      </footer>
+      <Footer isDark={isDark} />
 
       <style>{`
         @keyframes blink {

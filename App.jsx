@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import Footer from './Footer.jsx';
 import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
 
 // Abhishek Portfolio — r3hbr-style hero (fixed & stable)
 // Single-file React + Tailwind classes (paste into canvas / Next.js page)
@@ -14,9 +16,15 @@ const NeonButton = ({ title, subtitle, href = "#", glow = "from-fuchsia-500 to-v
       window.open(href, '_blank', 'noopener,noreferrer');
     }
   };
+  const isInternal = href.startsWith('/') && !openInNewTab;
+  const Wrapper = ({ children }) => isInternal ? (
+    <Link to={href} className="block group" onClick={handleClick}>{children}</Link>
+  ) : (
+    <a href={href} className="block group" onClick={handleClick} target={openInNewTab ? "_blank" : undefined} rel={openInNewTab ? "noopener noreferrer" : undefined}>{children}</a>
+  );
 
   return (
-    <a href={href} className="block group" onClick={handleClick} target={openInNewTab ? "_blank" : undefined} rel={openInNewTab ? "noopener noreferrer" : undefined}>
+    <Wrapper>
       <motion.div
         whileHover={{ scale: 1.04, rotate: tilt }}
         whileTap={{ scale: 0.98 }}
@@ -34,7 +42,7 @@ const NeonButton = ({ title, subtitle, href = "#", glow = "from-fuchsia-500 to-v
           <div className="text-amber-300 font-semibold">{subtitle} →</div>
         </div>
       </motion.div>
-    </a>
+    </Wrapper>
   );
 };
 
@@ -66,12 +74,10 @@ function useCursorGlow() {
     const dot = document.getElementById("cursorDot");
     if (!glow || !dot) return;
 
-    // Always show custom cursor
     document.documentElement.classList.add("hide-native-cursor");
     glow.style.opacity = "0.6";
     dot.style.opacity = "1";
 
-    // Use transform for better performance and smoothness
     let mouseX = 0;
     let mouseY = 0;
     let glowX = 0;
@@ -85,38 +91,28 @@ function useCursorGlow() {
     };
 
     let isHot = false;
+    let lastHot = null;
 
-    // Smooth animation loop using requestAnimationFrame
     const smoothMove = () => {
-      // Smooth follow with easing for glow (slower)
       glowX += (mouseX - glowX) * 0.15;
       glowY += (mouseY - glowY) * 0.15;
-      
-      // Faster follow for dot
       dotX += (mouseX - dotX) * 0.25;
       dotY += (mouseY - dotY) * 0.25;
-
       const scale = isHot ? 'scale(1.5)' : 'scale(1)';
       glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
       dot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%, -50%) ${scale}`;
-
       requestAnimationFrame(smoothMove);
     };
-
     smoothMove();
 
-    // Treat links, headings, paragraphs, spans, list items and any .hover-cursor-target as interactive
     const HOT_SELECTOR = 'a, h2, h3, h4, h5, h6, p, mark, li, .hover-cursor-target';
-    let lastHot = null;
     const onOver = (e) => {
-      // Check if target itself is a text-anim span first
       let el = null;
       if (e.target && e.target.classList && e.target.classList.contains('text-anim')) {
         el = e.target;
       } else if (e.target && e.target.closest) {
         el = e.target.closest(HOT_SELECTOR);
       }
-      
       if (el) {
         isHot = true;
         dot.classList.add('hot');
@@ -135,7 +131,6 @@ function useCursorGlow() {
 
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseover", onOver);
-
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
@@ -145,7 +140,7 @@ function useCursorGlow() {
 }
 
 export default function App() {
-  useCursorGlow();
+  // useCursorGlow(); // Moved to main.jsx for global use
   const [isDark, setIsDark] = React.useState(true);
   const [scrollProgress, setScrollProgress] = React.useState(0);
 
@@ -196,7 +191,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className={`min-h-screen ${isDark ? 'bg-black text-white' : 'bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900'} relative overflow-hidden transition-all duration-300`}>
+    <div className={`min-h-screen ${isDark ? 'bg-black text-white' : 'bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900'} relative overflow-x-hidden transition-all duration-300`}>
       {/* Electric Neon Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 z-50 bg-transparent">
         <div 
@@ -228,11 +223,11 @@ export default function App() {
             </span>
           </div>
           <nav className="flex items-center gap-0 text-base font-semibold">
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/">Home</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/projects">Projects</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/gaming">Gaming</a>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/">Home</Link>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/projects">Projects</Link>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/gaming">Gaming</Link>
             <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="#" onClick={scrollToAbout}>About</a>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="/hire-me">Hire Me</a>
+            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/hire-me">Hire Me</Link>
             <button 
               onClick={toggleTheme}
               className={`theme-toggle-btn w-10 h-10 rounded-full ${isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20' : 'bg-gray-200 border-gray-300 hover:bg-gray-300 hover:border-gray-400'} border text-xl transition-all duration-500 hover:scale-110 hover:rotate-180 overflow-hidden relative ml-6`}
@@ -315,14 +310,7 @@ export default function App() {
         </div>
       </main>
 
-      <footer className={`max-w-6xl mx-auto px-6 pb-10 pt-20 ${isDark ? 'text-white/50' : 'text-gray-500'} transition-colors duration-300`}>
-        <div className="text-center space-y-2">
-          <div>© 2025 Abhishek Jaisal — Founder & AI Enhanced Full-Stack Developer</div>
-          <div className="text-sm">
-            Let's connect → <a href="https://www.linkedin.com/in/iabhijais/" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors">LinkedIn</a> · <a href="https://github.com/iabhijais" target="_blank" rel="noopener noreferrer" className="hover:text-fuchsia-400 transition-colors">GitHub</a> · <a href="mailto:iabhijais@gmail.com" className="hover:text-fuchsia-400 transition-colors">Email</a>
-          </div>
-        </div>
-      </footer>
+      <Footer isDark={isDark} />
 
       {/* inline glow + glass animations */}
       <style>{`
@@ -687,8 +675,6 @@ export default function App() {
       `}</style>
 
       <DevCheck />
-      <div id="cursorGlow" className="cursor-glow"></div>
-      <div id="cursorDot" className="cursor-dot"></div>
     </div>
   );
 }
