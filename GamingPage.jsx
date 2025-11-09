@@ -5,23 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Gaming() {
   const [isDark, setIsDark] = React.useState(true);
-  const [scrollProgress, setScrollProgress] = React.useState(0);
-
   React.useEffect(() => { document.body.className = isDark ? 'dark-mode' : 'light-mode'; }, [isDark]);
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const toggleTheme = () => setIsDark(d => !d);
 
   const socialLinks = [
@@ -35,37 +19,17 @@ export default function Gaming() {
     'Former Head & Operations Lead at G4R Esports',
     'Represented teams in BGMI circuits including BGCS, Snapdragon Pro Series, and iQOO Invitational',
     'Led data-driven strategy building for competitive lineups',
-    <>Currently developing <a href="https://game-grid-one.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-purple-400 font-bold hover:text-pink-400 transition-all duration-300 underline decoration-purple-400/40 hover:decoration-purple-400/60">GameGrid.gg</a> — analytics & performance insights for esports</>
+    <>Currently developing <a href="https://game-grid-one.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold hover:from-purple-300 hover:to-pink-300 transition-all duration-300 underline decoration-purple-400/40 hover:decoration-purple-400/60">GameGrid.gg</a> — analytics & performance insights for esports</>
   ];
 
   const currentFocus = [
-    <>Expanding <a href="https://game-grid-one.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-purple-400 font-bold hover:text-pink-400 transition-all duration-300 underline decoration-purple-400/40 hover:decoration-purple-400/60">GameGrid.gg</a>'s AI-based esports analytics</>,
+    <>Expanding <a href="https://game-grid-one.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold hover:from-purple-300 hover:to-pink-300 transition-all duration-300 underline decoration-purple-400/40 hover:decoration-purple-400/60">GameGrid.gg</a>'s AI-based esports analytics</>,
     'Building a community of competitive and creative gamers',
     'Collaborating with AI & gaming enthusiasts through my Discord'
   ];
 
   return (
-    <div className={`min-h-screen h-full ${isDark ? 'bg-black text-white' : 'bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900'} relative overflow-x-hidden transition-all duration-300`}>
-      {/* Electric Neon Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-transparent">
-        <motion.div 
-          className="h-full electric-progress"
-          style={{ width: `${scrollProgress}%` }}
-          initial={{ width: '0%' }}
-          animate={{ width: `${scrollProgress}%` }}
-          transition={{ duration: 0.1, ease: 'easeOut' }}
-        />
-      </div>
-
-      {/* floating gradient glows */}
-      {isDark && (
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-40 -left-40 w-[42rem] h-[42rem] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,.18),transparent_60%)] blur-3xl animate-glowPulse" />
-          <div className="absolute -bottom-48 -right-48 w-[50rem] h-[50rem] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,.16),transparent_60%)] blur-3xl animate-glowPulse delay-300" />
-          <div className="absolute top-1/3 -right-24 w-[36rem] h-[36rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,.18),transparent_60%)] blur-3xl animate-glowPulse delay-700" />
-        </div>
-      )}
-
+    <div className={`min-h-screen h-full ${isDark ? 'bg-black text-white' : 'bg-white text-gray-900'} transition-colors duration-300`}>
       <header className={`w-full sticky top-0 z-20 ${isDark ? 'bg-black/50' : 'bg-white/80'} backdrop-blur-md transition-colors duration-300 ${!isDark && 'shadow-sm'}`}>
         <div className='max-w-6xl mx-auto px-6 h-16 flex items-center justify-between'>
           <div className='font-bold text-xl flex items-center gap-2 px-4 py-2 -ml-4'>
@@ -91,10 +55,9 @@ export default function Gaming() {
       </header>
 
       <main className='max-w-5xl mx-auto px-6 py-12'>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className='mb-16 text-center'>
-          <h1 className='text-5xl md:text-6xl font-black mb-4 flex items-center justify-center gap-3'>
-            <span>🎮</span>
-            <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400'>Gaming Journey</span>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className='mb-16'>
+          <h1 className='text-5xl md:text-6xl font-black mb-4'>
+            <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400'>🎮 Gaming Journey</span>
           </h1>
           <p className='text-2xl md:text-3xl font-bold mb-2'>
             <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400'>"From the Lobby to the Cloud"</span>
@@ -105,7 +68,7 @@ export default function Gaming() {
           <p>When most people were learning to press play, I was learning to strategize every frame. That's where <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold'>Hawk</span> was born — not just another gamer tag, but a mindset.</p>
           <p>I started my journey as a competitive <span className='font-bold'>BGMI player</span>, leading teams, managing scrims, and building strategies that turned underdogs into tournament-ready squads. From <span className='text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 font-bold'>Team Glacier</span> to <span className='text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 font-bold'>G4R Esports</span>, every lineup taught me something deeper — not just how to win a match, but how to lead, adapt, and analyze under fire.</p>
           <p>Soon, my curiosity evolved beyond the game itself. I wanted to understand why we won, why we lost, and how data could predict performance. That's when my love for gaming turned into something bigger — <span className='font-bold'>building tools for gamers</span>.</p>
-          <p>Today, I channel the same competitive fire into <a href="https://game-grid-one.vercel.app/" target="_blank" rel="noopener noreferrer" className='text-purple-400 font-bold hover:text-pink-400 transition-all duration-300 underline decoration-purple-400/40 hover:decoration-purple-400/60'>GameGrid.gg</a>, an esports analytics platform I'm building from scratch — combining gaming, AI, and data visualization to give players and teams the insights I once wished I had.</p>
+          <p>Today, I channel the same competitive fire into <a href="https://game-grid-one.vercel.app/" target="_blank" rel="noopener noreferrer" className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold hover:from-purple-300 hover:to-pink-300 transition-all duration-300 underline decoration-purple-400/40 hover:decoration-purple-400/60'>GameGrid.gg</a>, an esports analytics platform I'm building from scratch — combining gaming, AI, and data visualization to give players and teams the insights I once wished I had.</p>
           <p>I still hop into lobbies, call shots, and break down strats — but now I also code dashboards, automate match logs, and experiment with AI-driven esports intelligence. Because for me, <span className='font-bold'>gaming isn't just a passion — it's my foundation, my inspiration, and my reason to build</span>.</p>
         </motion.div>
 
