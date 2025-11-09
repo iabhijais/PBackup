@@ -81,7 +81,24 @@ export default function Projects() {
   ];
 
   return (
-    <div className={`min-h-screen h-full ${isDark ? 'bg-black text-white' : 'bg-white text-gray-900'} transition-colors duration-300`}>
+    <div className={`min-h-screen h-full ${isDark ? 'bg-black text-white' : 'bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900'} relative overflow-x-hidden transition-all duration-300`}>
+      {/* Electric Neon Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-transparent">
+        <div 
+          className="h-full electric-progress"
+          style={{ width: `${typeof window !== 'undefined' ? (window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100) : 0}%` }}
+        />
+      </div>
+
+      {/* floating gradient glows */}
+      {isDark && (
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -top-40 -left-40 w-[42rem] h-[42rem] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,.18),transparent_60%)] blur-3xl animate-glowPulse" />
+          <div className="absolute -bottom-48 -right-48 w-[50rem] h-[50rem] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,.16),transparent_60%)] blur-3xl animate-glowPulse delay-300" />
+          <div className="absolute top-1/3 -right-24 w-[36rem] h-[36rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,.18),transparent_60%)] blur-3xl animate-glowPulse delay-700" />
+        </div>
+      )}
+
       {/* NAV */}
       <header className={`w-full sticky top-0 z-20 ${isDark ? 'bg-black/50' : 'bg-white/80'} backdrop-blur-md transition-colors duration-300 ${!isDark && 'shadow-sm'}`}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
