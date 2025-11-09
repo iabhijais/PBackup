@@ -8,8 +8,11 @@ import { Link } from 'react-router-dom';
 
 const NeonButton = ({ title, subtitle, href = "#", glow = "from-fuchsia-500 to-violet-500", tilt = 0.8, icon = "🧪", showLine = false, openInNewTab = false, onClick }) => {
   const handleClick = (e) => {
+    console.log('NeonButton clicked!', title);
     if (onClick) {
       e.preventDefault();
+      e.stopPropagation();
+      console.log('Calling onClick handler');
       onClick(e);
     } else if (openInNewTab && href !== "#") {
       e.preventDefault();
@@ -17,10 +20,13 @@ const NeonButton = ({ title, subtitle, href = "#", glow = "from-fuchsia-500 to-v
     }
   };
   const isInternal = href.startsWith('/') && !openInNewTab;
-  const Wrapper = ({ children }) => isInternal ? (
-    <Link to={href} className="block group" onClick={handleClick}>{children}</Link>
+  const isButton = onClick && href === "#";
+  const Wrapper = ({ children }) => isButton ? (
+    <button type="button" className="block group w-full text-left cursor-pointer" onClick={handleClick} style={{ pointerEvents: 'auto' }}>{children}</button>
+  ) : isInternal ? (
+    <Link to={href} className="block group cursor-pointer" onClick={handleClick} style={{ pointerEvents: 'auto' }}>{children}</Link>
   ) : (
-    <a href={href} className="block group" onClick={handleClick} target={openInNewTab ? "_blank" : undefined} rel={openInNewTab ? "noopener noreferrer" : undefined}>{children}</a>
+    <a href={href} className="block group cursor-pointer" onClick={handleClick} target={openInNewTab ? "_blank" : undefined} rel={openInNewTab ? "noopener noreferrer" : undefined} style={{ pointerEvents: 'auto' }}>{children}</a>
   );
 
   return (
@@ -30,16 +36,17 @@ const NeonButton = ({ title, subtitle, href = "#", glow = "from-fuchsia-500 to-v
         whileTap={{ scale: 0.98 }}
         transition={{ type: "spring", stiffness: 260, damping: 18 }}
         className={`relative rounded-2xl p-[1px] bg-gradient-to-r ${glow} glow-outer hover-cursor-target ${showLine ? 'neon-btn-line' : ''}`}
+        style={{ pointerEvents: 'auto' }}
       >
-        <div className="relative rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 px-5 py-4 flex items-center justify-between overflow-hidden">
+        <div className="relative rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 px-5 py-4 flex items-center justify-between overflow-hidden" style={{ pointerEvents: 'auto' }}>
           <span className="pointer-events-none absolute -inset-[40%] rotate-[20deg] sheen" />
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" style={{ pointerEvents: 'none' }}>
             <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center">{icon}</div>
             <div>
               <div className="text-sm text-white/80">{title}</div>
             </div>
           </div>
-          <div className="text-amber-300 font-semibold">{subtitle} →</div>
+          <div className="text-amber-300 font-semibold" style={{ pointerEvents: 'none' }}>{subtitle} →</div>
         </div>
       </motion.div>
     </Wrapper>
@@ -145,12 +152,24 @@ export default function App() {
   const [scrollProgress, setScrollProgress] = React.useState(0);
 
   const scrollToAbout = (e) => {
-    e.preventDefault();
-    const aboutSection = document.getElementById('about-section');
-    if (aboutSection) {
-      const yOffset = -20;
-      const y = aboutSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    const el = document.getElementById('about-section');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const scrollToTop = (e) => {
+    if (e) { 
+      e.preventDefault(); 
+      e.stopPropagation(); 
+    }
+    
+    // Use same approach as About - scroll to top element
+    const topElement = document.querySelector('header');
+    if (topElement) {
+      topElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Fallback to body
+      document.body.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -193,9 +212,19 @@ export default function App() {
   return (
     <div className={`min-h-screen ${isDark ? 'bg-black text-white' : 'bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900'} relative overflow-x-hidden transition-all duration-300`}>
       {/* Electric Neon Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-transparent">
+      <div 
+        className="fixed top-0 left-0 w-full h-1 z-50 bg-gray-800/30 cursor-pointer"
+        onClick={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const percentage = (clickX / rect.width) * 100;
+          const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const targetScroll = (percentage / 100) * totalHeight;
+          window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+        }}
+      >
         <div 
-          className="h-full electric-progress"
+          className="h-full electric-progress cursor-pointer"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -213,9 +242,9 @@ export default function App() {
       <header className={`w-full sticky top-0 z-20 ${isDark ? 'bg-black/50' : 'bg-white/80'} backdrop-blur-md transition-colors duration-300 ${!isDark && 'shadow-sm'}`}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className={`font-bold text-xl flex items-center gap-2 px-4 py-2 -ml-4`}>
-            <a href="#" className="transition-all duration-300 rounded-lg nav-link-logo relative p-1 -m-1">
+            <button onClick={scrollToTop} className="transition-all duration-300 rounded-lg nav-link-logo relative p-1 -m-1 bg-transparent border-0">
               <img src="/Logo.ico" alt="Logo" className="w-6 h-6 object-contain" />
-            </a>
+            </button>
             <span className="flex items-center -mt-0.5">
               <span className={isDark ? 'text-white' : 'text-gray-900'}>/</span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300">iabhijais</span>
@@ -223,10 +252,10 @@ export default function App() {
             </span>
           </div>
           <nav className="flex items-center gap-0 text-base font-semibold">
-            <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/">Home</Link>
+            <button className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative bg-transparent border-0`} onClick={scrollToTop}>Home</button>
             <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/projects">Projects</Link>
             <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/gaming">Gaming</Link>
-            <a className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} href="#" onClick={scrollToAbout}>About</a>
+            <button className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative bg-transparent border-0`} onClick={scrollToAbout}>About</button>
             <Link className={`nav-link-tab cursor-pointer transition-all duration-300 px-4 py-2 relative`} to="/hire-me">Hire Me</Link>
             <button 
               onClick={toggleTheme}
@@ -266,7 +295,7 @@ export default function App() {
               before you've even finished explaining.
             </h2>
             
-            <h2 id="about-section" className="mt-8 mb-6 pb-2 text-[2.5rem] sm:text-[3.5rem] font-extrabold tracking-tight text-anim">
+            <h2 id="about-section" className="scroll-mt-20 mt-8 mb-6 pb-2 text-[2.5rem] sm:text-[3.5rem] font-extrabold tracking-tight text-anim">
               I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 to-cyan-300 drop-shadow-[0_0_25px_rgba(168,85,247,0.5)] hover:drop-shadow-[0_0_35px_rgba(168,85,247,0.8)] transition-all duration-300">Abhishek</span>..<span className="animate-blink">.</span>
             </h2>
 
@@ -297,14 +326,25 @@ export default function App() {
         {/* Buttons aligned with nav */}
         <div className="hidden lg:flex flex-col gap-8 absolute top-[160px] right-6 w-[380px]">
           <NeonButton title="Ideas → Reality" subtitle="View Projects →" glow="from-purple-500/70 to-pink-500/70" tilt={0.8} icon="💡" href="/projects" />
-          <NeonButton title="Beyond the Code" subtitle="Know Me →" glow="from-teal-500/70 to-cyan-500/70" tilt={-0.8} icon="👤" showLine={true} onClick={() => {
-            const aboutSection = document.getElementById('about-section');
-            if (aboutSection) {
-              const yOffset = -20;
-              const y = aboutSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-          }} />
+          <div onClick={scrollToAbout} onKeyDown={(ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); scrollToAbout(ev); } }} tabIndex={0} className="group cursor-pointer">
+            <motion.div
+              whileHover={{ scale: 1.04, rotate: -0.8 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 260, damping: 18 }}
+              className="relative rounded-2xl p-[1px] bg-gradient-to-r from-teal-500/70 to-cyan-500/70 glow-outer neon-btn-line"
+            >
+              <div className="relative rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 px-5 py-4 flex items-center justify-between overflow-hidden">
+                <span className="pointer-events-none absolute -inset-[40%] rotate-[20deg] sheen" />
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center">👤</div>
+                  <div>
+                    <div className="text-sm text-white/80">Beyond the Code</div>
+                  </div>
+                </div>
+                <div className="text-amber-300 font-semibold">Know Me →</div>
+              </div>
+            </motion.div>
+          </div>
           <NeonButton title="Built to Prove" subtitle="View Resume →" glow="from-indigo-500/70 to-violet-500/70" tilt={0.8} icon="📄" href="/resume" />
           <NeonButton title="Let's Build Together" subtitle="Hire Me →" glow="from-pink-500/70 to-red-500/70" tilt={-0.8} icon="🤝" showLine={true} href="/hire-me" />
         </div>
@@ -312,7 +352,7 @@ export default function App() {
 
       <Footer isDark={isDark} />
 
-      {/* inline glow + glass animations */}
+      <DevCheck />
       <style>{`
         @keyframes glowPulse {
           0% { opacity: .55; transform: scale(1); }
@@ -667,14 +707,7 @@ export default function App() {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(400%); }
         }
-        
-        @keyframes electricSpark {
-          0%, 100% { opacity: 0.5; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
       `}</style>
-
-      <DevCheck />
     </div>
   );
 }

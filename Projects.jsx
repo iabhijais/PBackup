@@ -82,14 +82,6 @@ export default function Projects() {
 
   return (
     <div className={`min-h-screen h-full ${isDark ? 'bg-black text-white' : 'bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900'} relative overflow-x-hidden transition-all duration-300`}>
-      {/* Electric Neon Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-transparent">
-        <div 
-          className="h-full electric-progress"
-          style={{ width: `${typeof window !== 'undefined' ? (window.scrollY / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100) : 0}%` }}
-        />
-      </div>
-
       {/* floating gradient glows */}
       {isDark && (
         <div className="pointer-events-none absolute inset-0 -z-10">
@@ -241,32 +233,6 @@ export default function Projects() {
       </main>
 
       <Footer isDark={isDark} />
-
-      <style>{`
-        @keyframes blink {
-          0%, 49% { opacity: 1; }
-          50%, 100% { opacity: 0; }
-        }
-        .animate-blink { animation: blink 1s ease-in-out infinite; }
-        
-        .nav-link-tab {
-          position: relative;
-        }
-        .nav-link-tab::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 0;
-          height: 2px;
-          background: linear-gradient(to right, #a855f7, #06b6d4);
-          transition: width 0.3s ease;
-        }
-        .nav-link-tab:hover::after {
-          width: 80%;
-        }
-      `}</style>
     </div>
   );
 }
