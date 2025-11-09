@@ -77,7 +77,7 @@ export default function Gaming() {
             <span>⚡</span>
             <span className='text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-300'>Where You'll Find Me</span>
           </h2>
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+          <div className='grid grid-cols-1 sm:grid-cols-3 gap-6'>
             {socialLinks.map((social, i) => (
               <motion.a 
                 key={i} 
